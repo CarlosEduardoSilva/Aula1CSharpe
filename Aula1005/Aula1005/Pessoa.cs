@@ -14,6 +14,10 @@ namespace Aula1005
         public string Nome1 { get => Nome; set => Nome = value; }
         public string Cpf1 { get => Cpf; set => Cpf = value; }
 
+        public Pessoa()
+        {
+
+        }
         public Pessoa(String nome)
         {
             Nome = nome;
