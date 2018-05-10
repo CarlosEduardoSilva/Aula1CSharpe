@@ -10,12 +10,11 @@ namespace Aula1005
     {
         static void Main(string[] args)
         {
-            Cliente cli = new Cliente();
+            //Utilizando os construtores parametrizados
+            Cliente cli = new Cliente("Jucicreia"); // nome
+            Cliente cli2 = new Cliente("Jucicreia", "123"); // nome, cpf
+            
 
-            cli.Nome1 = "Carlos";
-            string nomeCliente = cli.Nome1;
-            cli.Cpf1 = "123";
-            string cpfCliente = cli.Cpf1;
 
             Console.WriteLine(cli.Nome1);
             Console.WriteLine(cli.Cpf1);

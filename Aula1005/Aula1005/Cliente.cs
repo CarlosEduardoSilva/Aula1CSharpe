@@ -16,8 +16,16 @@ namespace Aula1005
         public string Cpf1 { get => Cpf; set => Cpf = value; }
 
 
-        public Cliente()
+        public Cliente(String nome)
         {
+            Nome = nome;
+        }
+
+        public Cliente(string nome, string cpf)
+        {
+
+            Nome = nome;
+            Cpf = cpf;
 
         }
     }
