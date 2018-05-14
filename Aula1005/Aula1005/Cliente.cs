@@ -43,6 +43,13 @@ namespace Aula1005
 
         }
 
-        
+        override
+            public string ImprimirInfo()
+        {
+
+            return Nome + ", " + Cpf + ", " +  DataNas.ToShortString();
+        }
+
+
     }
 }

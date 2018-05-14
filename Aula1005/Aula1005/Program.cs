@@ -17,7 +17,7 @@ namespace Aula1005
             //Console.WriteLine(cli.Cpf1);
 
 
-            Cliente cli2 = new Cliente("Jucicreia", "123"); // nome, cpf
+            Cliente cli3 = new Cliente("Jucicreia", "123"); // nome, cpf
             cli2.DataNas = new DateTime(1950, 05, 05);
             Console.WriteLine(
                 cli2.Nome1 + " nasceu em " + cli2.DataNas
@@ -33,6 +33,7 @@ namespace Aula1005
             //Pessoa p = new Pessoa();
             //Classes abstradads não podem ser instanciadas
 
+            Console.WriteLine(cli3.ImprimirInfo());
 
             Console.ReadLine();
 
