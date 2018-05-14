@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Aula1405
 {
-    interface MeioTransporte
+    class Roda
     {
-        int Velocidade { get; set; }
 
-        void Acelerar();
-        void Desacelerar();
-        void NivelCombustivel();
+        public int RodaId { get; set; }
+
+        public string Modelo { get; set; }
+
+        public Marca _Marca { get; set; }
     }
 }

@@ -42,9 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Carro.cs" />
+    <Compile Include="Marca.cs" />
     <Compile Include="MeioTransporte.cs" />
+    <Compile Include="Onibus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roda.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
