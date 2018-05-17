@@ -8,19 +8,11 @@ using System.Threading.Tasks;
 namespace Aula1705.Controllers {
     class AtividadesController {
         //Simulando tabela
-        public List<Atividade> ListaAtividades { get; set; }
-
-
-        public AtividadesController() {
-
-            ListaAtividades = new List<Atividade>();
-            }
-
-        public int MyProperty { get; set; }
-        
+        private static List<Atividade> ListaAtividades { get; set; } = new List<Atividade>();
+               
         //Salvar
         public void Salvar(Atividade atividade) {
-
+            atividade.AtividadeId = ListaAtividades.Count + 1;
             ListaAtividades.Add(atividade);
                             
             }
