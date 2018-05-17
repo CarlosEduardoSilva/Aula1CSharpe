@@ -10,6 +10,12 @@ namespace Aula1705.Controllers {
         //Simulando tabela
         public List<Atividade> ListaAtividades { get; set; }
 
+
+        public AtividadesController() {
+
+            ListaAtividades = new List<Atividade>();
+            }
+
         public int MyProperty { get; set; }
         
         //Salvar
