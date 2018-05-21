@@ -4,27 +4,25 @@ using System;
 
 namespace Aula1705.Views {
     class AtividadesView {
-
-
-        private AtividadesController atividadeController;
-
-        enum MinhasOpcoes 
+                
+         enum MinhasOpcoes 
             {
                 CriarAtividades = 1,
                 ListarAtividades = 2,
                 BuscarAtividade  =3,
                 EditarAtividade = 4,
-                ExcluirAtivdade = 5,
+                ExcluirAtividade = 5,
+                BuscarNome = 6,
+                ListAtivos = 7,
+                Sair = 9
 
             } 
-
-        public AtividadesView() {
-            new AtividadesController();
-            }
-        int opcao = 0;
+               
+        
                 
         public void ExibirMenu() {
-            
+            MinhasOpcoes opcao = MinhasOpcoes.Sair;
+
             do {
                 Console.Clear();
                 Console.WriteLine("=========================");
@@ -34,74 +32,94 @@ namespace Aula1705.Views {
                 Console.WriteLine("= 3) Buscar Atividade   =");
                 Console.WriteLine("= 4) Editar Atividade   =");
                 Console.WriteLine("= 5) Excluir Atividade  =");
+                Console.WriteLine("= 6) Buscar por Nome    =");
+                Console.WriteLine("= 7) Listar Atividades (Ativos/Inativos)=");
+
                 Console.WriteLine("= 9) Sair  =");
                 Console.WriteLine("=========================");
 
 
                 //Metodo responsavel para transformar string em inteiro.
-                int opcao = int.Parse(Console.ReadLine());
+                 
+                opcao = (MinhasOpcoes)int.Parse(Console.ReadLine());
+
 
                 switch (opcao) {
-                    case 1:
+                    case MinhasOpcoes.CriarAtividades:
                     CriarAtividade();
-
                     break;
-
-                    case 2:
+                    case MinhasOpcoes.ListarAtividades:
                     ListarAtividades();
-
                     break;
-
-                    case 3:
+                    case MinhasOpcoes.BuscarAtividade:
                     BuscarAtividade();
-
                     break;
-
-                    case 4:
+                    case MinhasOpcoes.EditarAtividade:
                     EditarAtividade();
-
                     break;
-
-                    case 5:
+                    case MinhasOpcoes.ExcluirAtividade:
                     ExcluirAtividade();
-
                     break;
-
+                    case MinhasOpcoes.BuscarNome:
+                    BuscarPorNome();
+                    break;
+                    case MinhasOpcoes.ListAtivos:
+                    break;
                     default:
+                    case MinhasOpcoes.Sair:
+                    break;
+                    Console.WriteLine("Opcao invalida!!! Digite qualquer tecla para continuar");
+                    Console.ReadKey();
                     break;
                     }
-                } while (opcao != 9 );
+                } while (opcao !=  MinhasOpcoes.Sair );
+            }
+
+        private void BuscarPorNome() {
+            AtividadesController atividadeController = new AtividadesController();
+
+            Console.Write("Digite o nome da atividade: ");
+            string Nome =string.Concat(Console.ReadLine()); 
+
+            Atividade atividade = atividadeController.BuscarPorNome(Nome);
+
+            if (atividade != null) {
+                ExibirDetalhesAtividade(atividade);
+                } else {
+                Console.WriteLine("Atividade não encontrada");
+                }
+
+            Console.ReadKey();
+
             }
 
         private void ExcluirAtividade() {
             ListarAtividades();
-            ListarAtividades();
-            Console.WriteLine("Digite o id da atividade que deseja editar: ");
+
+            Console.Write("Digite o id da atividade que deseja excluir: ");
             int id = int.Parse(Console.ReadLine());
 
-            Atividade atividadeAtualizada = ObterDadosAtividade();
-
+            AtividadesController atividadeController = new AtividadesController();
             atividadeController.Excluir(id);
-
             }
 
         private void EditarAtividade() {
             ListarAtividades();
-            Console.WriteLine("Digite o id da atividade que deseja editar: ");
+
+            Console.Write("Digite o id da atividade que deseja editar: ");
             int id = int.Parse(Console.ReadLine());
 
             Atividade atividadeAtualizada = ObterDadosAtividade();
 
+            AtividadesController atividadeController = new AtividadesController();
             atividadeController.Editar(id, atividadeAtualizada);
-            
             }
 
         public void CriarAtividade() {
             Atividade atividade = ObterDadosAtividade();
 
-            AtividadesController atividadeCtrl = new AtividadesController();
-            atividadeCtrl.Salvar(atividade);
-
+            AtividadesController atividadeController = new AtividadesController();
+            atividadeController.Salvar(atividade);
             }
 
         private static Atividade ObterDadosAtividade() {
@@ -114,44 +132,37 @@ namespace Aula1705.Views {
             return atividade;
             }
 
-        private void BuscarAtividade() {
-
-            AtividadesController atividadeController = new AtividadesController();
-            Console.Write("Digite o id da atividade: ");
-
-            int id = int.Parse(Console.ReadLine());
-
-            Atividade atividade = atividadeController.BuscarPorId(id);
-
-            if(atividade != null) {
-
-                ExibirdetalhesAtividade(atividade);
-
-                } else {
-                Console.WriteLine("Atividade não encontrada");
-                }
-            }
-
         private void ListarAtividades() {
             AtividadesController atividadeController = new AtividadesController();
 
             Console.WriteLine("Listando atividades cadastradas");
-
-
             foreach (Atividade atividade in atividadeController.Listar()) {
-                ExibirdetalhesAtividade(atividade);
-
+                ExibirDetalhesAtividade(atividade);
                 }
             Console.WriteLine("Fim da lista");
             Console.ReadKey();
+            }
+        private void BuscarAtividade() {
+            AtividadesController atividadeController = new AtividadesController();
+
+            Console.Write("Digite o id da atividade: ");
+            int id = int.Parse(Console.ReadLine());
+
+            Atividade atividade = atividadeController.BuscarPorID(id);
+
+            if (atividade != null) {
+                ExibirDetalhesAtividade(atividade);
+                } else {
+                Console.WriteLine("Atividade não encontrada");
+                }
+
+            Console.ReadKey();
+            }
 
 
-            }    
-
-        
-        private static void ExibirdetalhesAtividade(Atividade atividade) {
+        private static void ExibirDetalhesAtividade(Atividade atividade) {
             Console.WriteLine("---");
-            Console.WriteLine("Id: " + atividade.AtividadeId);
+            Console.WriteLine("Id: " + atividade.AtividadeID);
             Console.WriteLine("Nome: " + atividade.Nome);
             Console.WriteLine("Ativo: " + atividade.Ativo);
             Console.WriteLine("---");
