@@ -29,6 +29,16 @@ namespace Aula1705.Controllers {
             return ListaAtividades;
         }
 
+
+        // Listar Ativos e inativos
+
+        public Atividade ListAtivos(string ativo) {
+
+
+
+            return null;
+            }
+
         //BuscarPorID
         public Atividade BuscarPorID(int id)
         {
@@ -44,13 +54,16 @@ namespace Aula1705.Controllers {
         }
 
         //Buscar por Nome
-        public Atividade BuscarPorNome(string Nome) {
-            foreach (Atividade a in ListaAtividades) {
-                if (a.Nome == Nome) {
-                    return a;
-                    }
-                }
-            return null;
+        public List<Atividade> BuscarPorNome(string Nome) {
+
+
+            IEnumerable<Atividade> atividadesSelecionadas = new List<Atividade>();
+
+            atividadesSelecionadas = from x in ListaAtividades
+                                     where x.Nome.ToLower().Contains(Nome.ToLower())
+                                     select x;
+            
+            return atividadesSelecionadas.ToList();
 
             }
         //Editar

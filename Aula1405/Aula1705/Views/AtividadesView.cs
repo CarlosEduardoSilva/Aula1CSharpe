@@ -1,25 +1,25 @@
 ﻿using Aula1705.Controllers;
 using Aula1705.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Aula1705.Views {
     class AtividadesView {
-                
-         enum MinhasOpcoes 
-            {
-                CriarAtividades = 1,
-                ListarAtividades = 2,
-                BuscarAtividade  =3,
-                EditarAtividade = 4,
-                ExcluirAtividade = 5,
-                BuscarNome = 6,
-                ListAtivos = 7,
-                Sair = 9
 
-            } 
-               
-        
-                
+        enum MinhasOpcoes {
+            CriarAtividades = 1,
+            ListarAtividades = 2,
+            BuscarAtividade = 3,
+            EditarAtividade = 4,
+            ExcluirAtividade = 5,
+            BuscarNome = 6,
+            ListAtivos = 7,
+            Sair = 9
+
+            }
+
+
+
         public void ExibirMenu() {
             MinhasOpcoes opcao = MinhasOpcoes.Sair;
 
@@ -40,7 +40,7 @@ namespace Aula1705.Views {
 
 
                 //Metodo responsavel para transformar string em inteiro.
-                 
+
                 opcao = (MinhasOpcoes)int.Parse(Console.ReadLine());
 
 
@@ -65,26 +65,29 @@ namespace Aula1705.Views {
                     break;
                     case MinhasOpcoes.ListAtivos:
                     break;
-                    default:
                     case MinhasOpcoes.Sair:
                     break;
+                    default:
                     Console.WriteLine("Opcao invalida!!! Digite qualquer tecla para continuar");
                     Console.ReadKey();
                     break;
                     }
-                } while (opcao !=  MinhasOpcoes.Sair );
+                } while (opcao != MinhasOpcoes.Sair);
             }
 
+        //Buscar por atividades por nome
         private void BuscarPorNome() {
             AtividadesController atividadeController = new AtividadesController();
 
             Console.Write("Digite o nome da atividade: ");
-            string Nome =string.Concat(Console.ReadLine()); 
+            string Nome = Console.ReadLine();
 
-            Atividade atividade = atividadeController.BuscarPorNome(Nome);
-
-            if (atividade != null) {
-                ExibirDetalhesAtividade(atividade);
+            List<Atividade> lista = atividadeController.BuscarPorNome(Nome);
+            if (lista.Count > 0) {
+                foreach (Atividade a in lista) 
+                    {
+                    ExibirDetalhesAtividade(a);
+                    }
                 } else {
                 Console.WriteLine("Atividade não encontrada");
                 }
@@ -93,6 +96,8 @@ namespace Aula1705.Views {
 
             }
 
+
+        //Excluir atividade
         private void ExcluirAtividade() {
             ListarAtividades();
 
@@ -103,6 +108,8 @@ namespace Aula1705.Views {
             atividadeController.Excluir(id);
             }
 
+
+        //Editar ativades
         private void EditarAtividade() {
             ListarAtividades();
 
@@ -115,6 +122,7 @@ namespace Aula1705.Views {
             atividadeController.Editar(id, atividadeAtualizada);
             }
 
+        //Criar Atividade
         public void CriarAtividade() {
             Atividade atividade = ObterDadosAtividade();
 
@@ -122,16 +130,20 @@ namespace Aula1705.Views {
             atividadeController.Salvar(atividade);
             }
 
+        //Obter dados
         private static Atividade ObterDadosAtividade() {
             Atividade atividade = new Atividade();
 
             Console.Write("Digite o nome da atividade: ");
             atividade.Nome = Console.ReadLine();
 
-            atividade.Ativo = true;
+            Console.WriteLine("Ativo? (s/n)");
+            atividade.Ativo = Console.ReadLine().ToLower() == "s";
+
             return atividade;
             }
 
+        //Listar Atividades
         private void ListarAtividades() {
             AtividadesController atividadeController = new AtividadesController();
 
@@ -142,6 +154,8 @@ namespace Aula1705.Views {
             Console.WriteLine("Fim da lista");
             Console.ReadKey();
             }
+
+        //Buscar atividade
         private void BuscarAtividade() {
             AtividadesController atividadeController = new AtividadesController();
 
@@ -159,7 +173,7 @@ namespace Aula1705.Views {
             Console.ReadKey();
             }
 
-
+        //Exibir detalhes da atividade 
         private static void ExibirDetalhesAtividade(Atividade atividade) {
             Console.WriteLine("---");
             Console.WriteLine("Id: " + atividade.AtividadeID);
