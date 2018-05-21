@@ -31,7 +31,7 @@ namespace Aula1705.Controllers {
             IEnumerable<Atividade> atividadesAtivas = new List<Atividade>();
 
             atividadesAtivas = from y in ListaAtividades
-                               where y.Ativo = status
+                               where y.Ativo == status
                                select y;
 
             return atividadesAtivas.ToList();
