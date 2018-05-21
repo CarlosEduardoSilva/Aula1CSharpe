@@ -5,6 +5,22 @@ using System;
 namespace Aula1705.Views {
     class AtividadesView {
 
+
+        private AtividadesController atividadeController;
+
+        enum MinhasOpcoes 
+            {
+                CriarAtividades = 1,
+                ListarAtividades = 2,
+                BuscarAtividade  =3,
+                EditarAtividade = 4,
+                ExcluirAtivdade = 5,
+
+            } 
+
+        public AtividadesView() {
+            new AtividadesController();
+            }
         int opcao = 0;
                 
         public void ExibirMenu() {
@@ -64,7 +80,7 @@ namespace Aula1705.Views {
             int id = int.Parse(Console.ReadLine());
 
             Atividade atividadeAtualizada = ObterDadosAtividade();
-            AtividadesController atividadeController = new AtividadesController();
+
             atividadeController.Excluir(id);
 
             }
@@ -75,7 +91,7 @@ namespace Aula1705.Views {
             int id = int.Parse(Console.ReadLine());
 
             Atividade atividadeAtualizada = ObterDadosAtividade();
-            AtividadesController atividadeController = new AtividadesController();
+
             atividadeController.Editar(id, atividadeAtualizada);
             
             }
