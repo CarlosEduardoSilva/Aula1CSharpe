@@ -78,8 +78,10 @@ namespace Aula1705.Views {
             AtividadesController atividadeController = new AtividadesController();
             
 
-            Console.WriteLine("Listando atividades cadastradas");
-            foreach (Atividade y in atividadeController.ListarPorStatus(true)) {
+            Console.WriteLine("Digite s para mostrar os ativos e n para mostrar os inativos");
+            string leitura = Console.ReadLine();
+            bool status = leitura.ToLower() == "s";
+            foreach (Atividade y in atividadeController.ListarPorStatus(status)) {
                 ExibirDetalhesAtividade(y);
                 }
             Console.WriteLine("Fim da lista");
