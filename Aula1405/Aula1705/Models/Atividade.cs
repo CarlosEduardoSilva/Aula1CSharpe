@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 namespace Aula1705.Models {
     class Atividade {
 
-        public int AtividadeID  { get; set; }
+        public int AtividadeID { get; set; }
 
         public string Nome { get; set; }
 
         public bool Ativo { get; set; }
-
-
 
         }
     }

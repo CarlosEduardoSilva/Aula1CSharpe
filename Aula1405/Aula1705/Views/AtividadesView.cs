@@ -18,8 +18,6 @@ namespace Aula1705.Views {
 
             }
 
-
-
         public void ExibirMenu() {
             MinhasOpcoes opcao = MinhasOpcoes.Sair;
 
@@ -43,7 +41,6 @@ namespace Aula1705.Views {
 
                 opcao = (MinhasOpcoes)int.Parse(Console.ReadLine());
 
-
                 switch (opcao) {
                     case MinhasOpcoes.CriarAtividades:
                     CriarAtividade();
@@ -64,6 +61,7 @@ namespace Aula1705.Views {
                     BuscarPorNome();
                     break;
                     case MinhasOpcoes.ListAtivos:
+                    ListarAtivos();
                     break;
                     case MinhasOpcoes.Sair:
                     break;
@@ -74,6 +72,20 @@ namespace Aula1705.Views {
                     }
                 } while (opcao != MinhasOpcoes.Sair);
             }
+
+        //Listar atividades ativas e inativas
+        private void ListarAtivos() {
+            AtividadesController atividadeController = new AtividadesController();
+            
+
+            Console.WriteLine("Listando atividades cadastradas");
+            foreach (Atividade y in atividadeController.ListarPorStatus(true)) {
+                ExibirDetalhesAtividade(y);
+                }
+            Console.WriteLine("Fim da lista");
+            Console.ReadKey();
+            
+        }
 
         //Buscar por atividades por nome
         private void BuscarPorNome() {
@@ -96,7 +108,6 @@ namespace Aula1705.Views {
 
             }
 
-
         //Excluir atividade
         private void ExcluirAtividade() {
             ListarAtividades();
@@ -107,8 +118,7 @@ namespace Aula1705.Views {
             AtividadesController atividadeController = new AtividadesController();
             atividadeController.Excluir(id);
             }
-
-
+        
         //Editar ativades
         private void EditarAtividade() {
             ListarAtividades();
