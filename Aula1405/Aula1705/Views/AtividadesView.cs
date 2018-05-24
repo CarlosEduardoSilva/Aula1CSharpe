@@ -39,6 +39,7 @@ namespace Aula1705.Views {
 
                 //Metodo responsavel para transformar string em inteiro.
 
+
                 opcao = (MinhasOpcoes)int.Parse(Console.ReadLine());
 
                 switch (opcao) {
