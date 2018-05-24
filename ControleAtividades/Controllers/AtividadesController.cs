@@ -1,0 +1,4 @@
+﻿namespace Controllers {
+    class AtividadesController {
+        }
+    }

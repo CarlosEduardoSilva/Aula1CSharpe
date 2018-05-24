@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Modelos {
+﻿namespace Modelos {
     class Categoria {
+
+        public int CategoriaID { get; set; }
+
+        public string Nome { get; set; }
+
+        public int Ativo { get; set; }
         }
     }
