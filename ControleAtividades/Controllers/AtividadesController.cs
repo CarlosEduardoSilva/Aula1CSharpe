@@ -41,7 +41,7 @@ namespace Controllers {
             if (atividadeAntiga != null) {
                 atividadeAntiga.Nome = atividadeAtualizada.Nome;
                 atividadeAntiga.Descricao = atividadeAtualizada.Descricao;
-                atividadeAtualizada.Ativo = atividadeAtualizada.Ativo;
+                atividadeAntiga.Ativo = atividadeAtualizada.Ativo;
                 atividadeAntiga.CategoriaID = atividadeAtualizada.CategoriaID;
                 atividadeAntiga.UsuarioID = atividadeAtualizada.UsuarioID;
                 }
